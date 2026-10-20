@@ -1,0 +1,50 @@
+services:
+  controller:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    hostname: controller
+    container_name: controller
+    command: /app/scripts/start-controller.sh
+    volumes:
+      - shared:/shared
+      - ./src:/app/src
+    networks:
+      - slurm-net
+
+  worker1:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    hostname: worker1
+    container_name: worker1
+    command: /app/scripts/start-worker.sh
+    volumes:
+      - shared:/shared
+      - ./src:/app/src
+    depends_on:
+      - controller
+    networks:
+      - slurm-net
+
+  worker2:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    hostname: worker2
+    container_name: worker2
+    command: /app/scripts/start-worker.sh
+    volumes:
+      - shared:/shared
+      - ./src:/app/src
+    depends_on:
+      - controller
+    networks:
+      - slurm-net
+
+volumes:
+  shared:
+
+networks:
+  slurm-net:
+    driver: bridge
