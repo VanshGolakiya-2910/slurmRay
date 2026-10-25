@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+# Slurm opens the job's --output file before the batch script runs,
+# so the log directory must exist before any job is submitted.
+mkdir -p /shared/logs /shared/data /shared/ray_results
+
 echo "[controller] Generating munge key..."
 dd if=/dev/urandom bs=1 count=1024 > /shared/munge.key 2>/dev/null
 cp /shared/munge.key /etc/munge/munge.key
