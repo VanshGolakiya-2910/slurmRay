@@ -26,7 +26,7 @@ echo "Head node: $head_node ($head_node_ip)"
 echo "==========================================="
 
 echo "Starting Ray head on $head_node..."
-ray start --head --port=6379 --num-cpus=2
+ray start --head --port=6379 --num-cpus=2 --dashboard-host=0.0.0.0
 sleep 5
 
 for ((i = 1; i < ${#nodes_array[@]}; i++)); do

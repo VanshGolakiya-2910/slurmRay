@@ -19,6 +19,8 @@ services:
     hostname: worker1
     container_name: worker1
     command: /app/scripts/start-worker.sh
+    ports:
+      - "8265:8265"
     volumes:
       - shared:/shared
       - ./src:/app/src

@@ -25,7 +25,7 @@ RUN chown slurm:slurm /var/spool/slurmd /var/spool/slurmctld /var/log/slurm \
 
 RUN pip3 install --no-cache-dir torch torchvision \
     --index-url https://download.pytorch.org/whl/cpu
-RUN pip3 install --no-cache-dir "ray[tune]"
+RUN pip3 install --no-cache-dir "ray[default,tune]"
 
 COPY config/slurm.conf /etc/slurm/slurm.conf
 RUN ln -sf /etc/slurm /etc/slurm-llnl 2>/dev/null || true
