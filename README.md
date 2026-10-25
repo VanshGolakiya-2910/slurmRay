@@ -8,7 +8,7 @@ Slurm manages compute nodes, Ray distributes the workload, and Docker makes the 
 
 - Spins up a **3-node Slurm cluster** in Docker (1 controller + 2 workers)
 - Submits a Slurm job that launches a **Ray cluster** across both workers
-- Runs **Ray Tune** with ASHA scheduler to search hyperparameters for a CNN on MNIST
+- Runs **Ray Tune** with ASHA scheduler to search hyperparameters for an MLP (fully connected neural network) on MNIST
 - Early-stops bad configs, runs 12 trials across 4 CPUs, finds best accuracy in ~4 minutes
 
 ## Architecture
